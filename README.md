@@ -1,27 +1,27 @@
-# Concurrent chat
+# TCP chat
 
 ## Overview
 
-Concurrent chat based on asyncio.
+Asynchronous TCP chat based on asyncio. TLS is used.
 
 Client <-> server model was used. Consequently, project as such consists of two main parts: ```client.py``` and ```server.py```. There may be many clients but only one server.
 
 ## Example of usage
 
-Once you have installed the project, you can start a server and create a client:
+Once you have installed the project, you can start a server and clients:
 <pre>
-python -m concurrent_chat.server
+python server.py
 </pre>
-In another terminal to create the first client:
+In another shell to create the first client:
 <pre>
-python -m concurrent_chat.client
+python client.py
 </pre>
-In yet another terminal to create the second client:
+In yet another shell to create the second client:
 <pre>
-python -m concurrent_chat.client
+python client.py
 </pre>
 
-Now type something so everyone can see!
+Have a great chat!
 
 ## Credentials
 

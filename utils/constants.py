@@ -3,7 +3,7 @@ from collections import namedtuple
 
 
 class Settings(enum.Enum):
-    SERVER_HOST = '127.0.0.1'
+    SERVER_HOST = 'localhost'
     SERVER_PORT = 54321
     SERVER_LOGGER_NAME = 'server_logger'
     CLIENT_LOGGER_NAME = 'client_logger'

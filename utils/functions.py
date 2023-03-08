@@ -1,8 +1,8 @@
 import sys
+import uuid
 import queue
 import asyncio
 import logging
-from typing import Optional
 from logging.handlers import QueueHandler, QueueListener
 
 
@@ -12,8 +12,6 @@ LoggerLevel = int
 def create_logger(
     name: str,
     *,
-    prefix: Optional[str] = None,
-    suffix: Optional[str] = None,
     level: LoggerLevel = logging.DEBUG,
 ) -> logging.Logger:
     """Creates logger that performes logging in a non-blocking manner.
@@ -22,19 +20,20 @@ def create_logger(
     Logger's log method invocation (e.g., .error()) -> QueueHandler ->
     <separate thread> QueueListener -> Handler(s)'(s) .handle() method.
     """
-    unique_id = '-'.join(filter(None, (prefix, name, suffix)))
-    logger = logging.getLogger(unique_id)
+    logger = logging.getLogger(name)
     logger.setLevel(level)
 
-    return _update_logger(logger, unique_id)
+    return update_logger(logger)
 
 
-def _update_logger(logger: logging.Logger, unique_id: str) -> logging.Logger:
-    file_handler = logging.FileHandler(unique_id + '.log')
+def update_logger(logger: logging.Logger) -> logging.Logger:
+    file_handler = logging.FileHandler(
+        logger.name + "-" + str(uuid.uuid4()) + ".log"
+    )
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(
         logging.Formatter(
-            '%(asctime)s - %(filename)s - %(levelname)s - %(message)s'
+            "%(asctime)s - %(filename)s - %(levelname)s - %(message)s"
         )
     )
 
