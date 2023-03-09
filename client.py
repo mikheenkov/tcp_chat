@@ -122,7 +122,7 @@ def read_and_enqueue_data() -> None:
     while not has_termination_been_required.is_set():
         data = sys.stdin.readline()
 
-        if data in Settings.IGNORABLE_STRINGS.value:
+        if data in ('\n', '\r\n', ''):
             continue
 
         data_queue.put(data)

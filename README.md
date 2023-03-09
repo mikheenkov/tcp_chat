@@ -8,16 +8,20 @@ Client <-> server model was used. Consequently, project as such consists of two 
 
 ## Example of usage
 
-Once you have installed the project, you can start a server and clients:
+Once you have installed the project, you must always set environment variables for server host, server port, etc. prior to client or server invocation.
+Now you can start a server and multiple clients:
 <pre>
+source set_environment_variables.sh
 python server.py
 </pre>
 In another shell to create the first client:
 <pre>
+source set_environment_variables.sh
 python client.py
 </pre>
 In yet another shell to create the second client:
 <pre>
+source set_environment_variables.sh
 python client.py
 </pre>
 
